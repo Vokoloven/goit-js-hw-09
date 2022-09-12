@@ -19,8 +19,10 @@ function onSubmitForm(e) {
     summDelays = summDelays + delayStep;
     if (i === 1) {
       delayChecker(i, delay);
-    } else if (i>= 2)
-{delayChecker(i, summDelays);}
+    } else if (i >= 2) {
+      delayChecker(i, summDelays);
+    }
+  }
 
   function createPromise(position, delay) {
     return new Promise((resolve, rejected) => {
