@@ -13,13 +13,12 @@ function onSubmitForm(e) {
   const delayStep = Number(refs.form[1].value);
   const position = Number(refs.form[2].value);
   let summDelays = delay;
-  let j = 0;
 
   for (let i = 1; i <= position; i += 1) {
-    summDelays = summDelays + delayStep;
     if (i === 1) {
       delayChecker(i, delay);
     } else if (i >= 2) {
+      summDelays += delayStep;
       delayChecker(i, summDelays);
     }
   }
