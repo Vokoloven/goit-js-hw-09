@@ -42,16 +42,14 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     if (selectedDates) {
-      return selectedDates.map(selectedDate => {
-        if (selectedDate < options.defaultDate) {
-          refs.dateTimePickerButton.disabled = true;
-          Notify.failure('Please choose a date in the future');
-        } else {
-          refs.dateTimePickerButton.removeAttribute('disabled');
-          const convertedSelectedDate = selectedDate.getTime();
-          localStorage.setItem('selectedDate', convertedSelectedDate);
-        }
-      });
+      if (selectedDates[0] < options.defaultDate) {
+        refs.dateTimePickerButton.disabled = true;
+        Notify.failure('Please choose a date in the future');
+      } else {
+        refs.dateTimePickerButton.removeAttribute('disabled');
+        const convertedSelectedDate = selectedDates[0].getTime();
+        localStorage.setItem('selectedDate', convertedSelectedDate);
+      }
     }
   },
 };
