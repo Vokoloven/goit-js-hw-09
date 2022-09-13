@@ -11,16 +11,22 @@ function getRandomHexColor() {
 let timerId = null;
 
 refs.btnStart.addEventListener('click', () => {
-  refs.btnStart.disabled = 'disabled';
-  refs.btnStop.removeAttribute('disabled');
-
+  btnStartDisable();
   timerId = setInterval(() => {
     refs.body.style.backgroundColor = getRandomHexColor();
   }, 500);
 });
 
 refs.btnStop.addEventListener('click', () => {
+  btnStopDisable(timerId);
+});
+
+function btnStartDisable() {
+  refs.btnStart.disabled = 'disabled';
+  refs.btnStop.removeAttribute('disabled');
+}
+function btnStopDisable(timerId) {
   refs.btnStop.disabled = 'disabled';
   refs.btnStart.removeAttribute('disabled');
   clearInterval(timerId);
-});
+}
