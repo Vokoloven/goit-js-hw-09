@@ -9,18 +9,15 @@ refs.form.addEventListener('submit', onSubmitForm);
 function onSubmitForm(e) {
   e.preventDefault();
 
-  const delay = Number(refs.form[0].value);
+  let delay = Number(refs.form[0].value);
   const delayStep = Number(refs.form[1].value);
   const position = Number(refs.form[2].value);
-  let summDelays = delay;
 
-  for (let i = 1; i <= position; i += 1) {
-    if (i === 1) {
-      delayChecker(i, delay);
-    } else if (i >= 2) {
-      summDelays += delayStep;
-      delayChecker(i, summDelays);
-    }
+  delayChecker(1, delay);
+
+  for (let i = 2; i <= position; i += 1) {
+    delay += delayStep;
+    delayChecker(i, delay);
   }
 
   function createPromise(position, delay) {
