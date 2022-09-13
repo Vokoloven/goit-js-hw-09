@@ -62,23 +62,8 @@ function commenceTimer() {
     const choosenDateTime = Number(localStorage.getItem('selectedDate'));
     const actualDateTime = Date.now();
     const timeDifferance = choosenDateTime - actualDateTime;
-    const converterTime = convertMs(timeDifferance);
 
-    const { days, hours, minutes, seconds } = converterTime;
-    refs.dataDays.textContent = days;
-    refs.dataHours.textContent = hours;
-    refs.dataMinutes.textContent = minutes;
-    refs.dataSeconds.textContent = seconds;
-
-    if (
-      days === '00' &&
-      hours === '00' &&
-      minutes === '00' &&
-      seconds === '00'
-    ) {
-      clearInterval(timerId);
-      refs.dateTimePickerButton.removeAttribute('disabled');
-    }
+    timeConverter(convertMs(timeDifferance));
   }, 1000);
 }
 
@@ -105,4 +90,16 @@ function convertMs(ms) {
   );
 
   return { days, hours, minutes, seconds };
+}
+
+function timeConverter({ days, hours, minutes, seconds }) {
+  refs.dataDays.textContent = days;
+  refs.dataHours.textContent = hours;
+  refs.dataMinutes.textContent = minutes;
+  refs.dataSeconds.textContent = seconds;
+
+  if (days === '00' && hours === '00' && minutes === '00' && seconds === '00') {
+    clearInterval(timerId);
+    refs.dateTimePickerButton.removeAttribute('disabled');
+  }
 }
